@@ -1,0 +1,131 @@
+/* Genel Sayfa Ayarları */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    perspective: 1000px;
+}
+
+/* Zarf Konteyneri */
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+/* Zarf Yapısı */
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #fdfdff;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+
+.pocket {
+    top: 0;
+    border-left: 150px solid #f4f4f9;
+    border-right: 150px solid #f4f4f9;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #f4f4f9;
+    border-radius: 0 0 5px 5px;
+}
+
+.flap {
+    top: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #e0e0e5;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+    z-index: 4;
+}
+
+/* Mektup ve Görsel Alanı */
+.letter {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 280px;
+    height: 180px;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 2;
+    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    opacity: 0;
+}
+
+.letter img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+/* --- Görsel Geçiş Butonları --- */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn { left: 5px; }
+.next-btn { right: 5px; }
+
+/* AÇIK ZARF DURUMU */
+.envelope-wrapper.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-120px) scale(1.1);
+    opacity: 1;
+    z-index: 5;
+}
+
+.instruction {
+    text-align: center;
+    color: #555;
+    margin-top: 15px;
+    font-size: 14px;
+}
